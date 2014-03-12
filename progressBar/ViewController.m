@@ -8,62 +8,41 @@
 
 #import "ViewController.h"
 #import "TableViewCell.h"
+#import "NSTimer+Blocks.h"
+#import "UIControl-JTTargetActionBlock.h"
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
-- (IBAction)click:(id)sender {
-    
-}
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.array = [NSMutableArray  array];
-    for (int i = 0; i<10000; i++) {
+    for (int i = 0; i<1000; i++) {
         
-        NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{@"progress":@0.0,@"title":[NSString stringWithFormat:@"satir: %d",i]}];
+            NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{@"progress":@0.0,
+                                                                                     @"title":[NSString stringWithFormat:@"satir: %d",i]
+                                                                                         }];
         [self.array addObject:dict];
         
         
     }
-    NSLog(@"erk %@",self.array);
     [self.tableView reloadData];
 	// Do any additional setup after loading the view, typically from a nib.
     
 }
 
-- (IBAction)startCountWithCell:(TableViewCell*)cell {
-    NSLog(@"çalıkıyor ");
-  cell.myTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateUI) userInfo:nil repeats:YES];
-   // cell.myTimer=[NSTimer timerWithTimeInterval:1 target:self selector:(updateUI) userInfo:nil repeats:YES];
-}
 -(void)updateDataStructureWithProgress:(NSNumber*)progress andIndex:(NSUInteger)index{
     NSMutableDictionary * obj = self.array[index];
     obj[@"progress"] = progress;
     
     
 }
-- (void)updateUI
-{
-    
-   
-    NSLog(@"asdasd");
-//    static int count =0; count++;
-//    
-//    if (count <=10)
-//    {
-     //   cell.progressLabel.text = [NSString stringWithFormat:@"%f %%", [cell.myTimer timeInterval]];
-//        cell.progressView.progress = (float)count/10.0f;
-//    } else
-//    {
-//        [cell.myTimer invalidate];
-//        cell.myTimer = nil;
-//    }
-}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,6 +52,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.array.count;
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -82,7 +62,19 @@
     static NSString *CellIdentifier = @"pass";
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    [cell.startButton addTarget:self action:@selector(startCountWithCell:) forControlEvents:UIControlEventTouchDown];
+    __block TableViewCell *blockcell = cell;
+    
+    [cell.startButton addEventHandler:^(id sender, UIEvent *event) {
+        
+        blockcell.myTimer = [NSTimer scheduledTimerWithTimeInterval:1 block:^{
+            
+            NSLog(@"asdasd %f",blockcell.percentage++);
+            
+            [self updateDataStructureWithProgress:[NSNumber numberWithFloat:blockcell.percentage] andIndex:indexPath.row];
+            
+        } repeats:YES];
+    } forControlEvent:UIControlEventTouchUpInside];
+    
     
     
     /* if (cell == nil) {
@@ -92,4 +84,9 @@
     return cell;
 }
 
+- (IBAction)showModel:(id)sender {
+    
+    
+    NSLog(@"erk %@",self.array);
+}
 @end

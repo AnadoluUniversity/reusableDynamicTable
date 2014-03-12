@@ -14,4 +14,5 @@
 @property (nonatomic, strong) IBOutlet UILabel *progressLabel;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSTimer *myTimer;
+@property (readwrite) float percentage;
 @end

@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController < UITableViewDataSource, UITableViewDelegate>
  
 
+- (IBAction)showModel:(id)sender;
    
 @property (strong, nonatomic) NSMutableArray * array ;
 @property (strong, nonatomic) IBOutlet UITableView * tableView;

@@ -22,6 +22,8 @@
 		0443B60318CF63F100D0E6AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0443B60118CF63F100D0E6AC /* InfoPlist.strings */; };
 		0443B60518CF63F100D0E6AC /* progressBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60418CF63F100D0E6AC /* progressBarTests.m */; };
 		0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60F18CF645400D0E6AC /* TableViewCell.m */; };
+		8B12A56218D0A108009E856F /* UIControl-JTTargetActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B12A56118D0A108009E856F /* UIControl-JTTargetActionBlock.m */; };
+		8B12A56518D0A3E4009E856F /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B12A56418D0A3E4009E856F /* NSTimer+Blocks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,10 @@
 		0443B60418CF63F100D0E6AC /* progressBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = progressBarTests.m; sourceTree = "<group>"; };
 		0443B60E18CF645400D0E6AC /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		0443B60F18CF645400D0E6AC /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		8B12A56018D0A108009E856F /* UIControl-JTTargetActionBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl-JTTargetActionBlock.h"; sourceTree = "<group>"; };
+		8B12A56118D0A108009E856F /* UIControl-JTTargetActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl-JTTargetActionBlock.m"; sourceTree = "<group>"; };
+		8B12A56318D0A3E4009E856F /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		8B12A56418D0A3E4009E856F /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 			children = (
 				0443B5E818CF63F100D0E6AC /* AppDelegate.h */,
 				0443B5E918CF63F100D0E6AC /* AppDelegate.m */,
+				8B12A56318D0A3E4009E856F /* NSTimer+Blocks.h */,
+				8B12A56418D0A3E4009E856F /* NSTimer+Blocks.m */,
+				8B12A56018D0A108009E856F /* UIControl-JTTargetActionBlock.h */,
+				8B12A56118D0A108009E856F /* UIControl-JTTargetActionBlock.m */,
 				0443B5EB18CF63F100D0E6AC /* Main.storyboard */,
 				0443B60E18CF645400D0E6AC /* TableViewCell.h */,
 				0443B60F18CF645400D0E6AC /* TableViewCell.m */,
@@ -254,6 +264,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B12A56518D0A3E4009E856F /* NSTimer+Blocks.m in Sources */,
+				8B12A56218D0A108009E856F /* UIControl-JTTargetActionBlock.m in Sources */,
 				0443B5F018CF63F100D0E6AC /* ViewController.m in Sources */,
 				0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */,
 				0443B5EA18CF63F100D0E6AC /* AppDelegate.m in Sources */,
@@ -462,6 +474,7 @@
 				0443B60A18CF63F100D0E6AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0443B60B18CF63F100D0E6AC /* Build configuration list for PBXNativeTarget "progressBarTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +483,7 @@
 				0443B60D18CF63F100D0E6AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
