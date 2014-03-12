@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController < UITableViewDataSource, UITableViewDelegate>
+ 
+
+   
+@property (strong, nonatomic) NSMutableArray * array ;
+@property (strong, nonatomic) IBOutlet UITableView * tableView;
 
 @end
