@@ -21,6 +21,7 @@
 		0443B5FB18CF63F100D0E6AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0443B5DD18CF63F100D0E6AC /* UIKit.framework */; };
 		0443B60318CF63F100D0E6AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0443B60118CF63F100D0E6AC /* InfoPlist.strings */; };
 		0443B60518CF63F100D0E6AC /* progressBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60418CF63F100D0E6AC /* progressBarTests.m */; };
+		0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60F18CF645400D0E6AC /* TableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		0443B60018CF63F100D0E6AC /* progressBarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "progressBarTests-Info.plist"; sourceTree = "<group>"; };
 		0443B60218CF63F100D0E6AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0443B60418CF63F100D0E6AC /* progressBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = progressBarTests.m; sourceTree = "<group>"; };
+		0443B60E18CF645400D0E6AC /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		0443B60F18CF645400D0E6AC /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 				0443B5E818CF63F100D0E6AC /* AppDelegate.h */,
 				0443B5E918CF63F100D0E6AC /* AppDelegate.m */,
 				0443B5EB18CF63F100D0E6AC /* Main.storyboard */,
+				0443B60E18CF645400D0E6AC /* TableViewCell.h */,
+				0443B60F18CF645400D0E6AC /* TableViewCell.m */,
 				0443B5EE18CF63F100D0E6AC /* ViewController.h */,
 				0443B5EF18CF63F100D0E6AC /* ViewController.m */,
 				0443B5F118CF63F100D0E6AC /* Images.xcassets */,
@@ -250,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0443B5F018CF63F100D0E6AC /* ViewController.m in Sources */,
+				0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */,
 				0443B5EA18CF63F100D0E6AC /* AppDelegate.m in Sources */,
 				0443B5E618CF63F100D0E6AC /* main.m in Sources */,
 			);
