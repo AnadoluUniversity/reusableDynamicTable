@@ -10,6 +10,7 @@
 #import "TableViewCell.h"
 #import "NSTimer+Blocks.h"
 #import "UIControl-JTTargetActionBlock.h"
+#import <Foundation/NSObject.h>
 
 @interface ViewController ()
 
@@ -20,13 +21,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.indexArray = [NSMutableArray  array];
     
+    self.indexes=[NSArray array];
     self.array = [NSMutableArray  array];
     for (int i = 0; i<1000; i++) {
         
-            NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{@"progress":@0.0,
+        NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{@"progress":@0.0,
                                                                                      @"title":[NSString stringWithFormat:@"satir: %d",i]
-                                                                                         }];
+                                                                                     }];
         [self.array addObject:dict];
         
         
@@ -44,11 +47,6 @@
 }
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.array.count;
 }
@@ -57,36 +55,59 @@
     return 1;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"pass";
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // static NSString *CellIdentifier = @"pass";
+    //  TableViewCell *cell =[[TableViewCell alloc] initWithStyle:<#(UITableViewCellStyle)#> reuseIdentifier:NSString "abc"];
     
+    
+    static NSString *CellIdentifier = @"pass";
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ 
+    
+    cell.progressLabel.text =[NSString stringWithFormat:@"qqqq %f",[self.array[indexPath.row][@"progress"] floatValue]] ;
     __block TableViewCell *blockcell = cell;
     
-    [cell.startButton addEventHandler:^(id sender, UIEvent *event) {
+    
+    [cell.startButton addEventHandler:^(UIButton * sender, UIEvent *event) {
         
-        blockcell.myTimer = [NSTimer scheduledTimerWithTimeInterval:1 block:^{
+        sender.selected = ! sender.selected;
+        if (sender.selected) {
             
-            NSLog(@"asdasd %f",blockcell.percentage++);
+            [sender setTitle:@"Stop" forState:UIControlStateSelected];
+       
             
-            [self updateDataStructureWithProgress:[NSNumber numberWithFloat:blockcell.percentage] andIndex:indexPath.row];
+            NSLog(@"%@",self.array[indexPath.row]);
+            blockcell.myTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 block:^{
+                float progress = [self.array[indexPath.row][@"progress"] floatValue] +1;
+                [self updateDataStructureWithProgress:[NSNumber numberWithFloat:progress] andIndex:indexPath.row];
+                NSString * string =  [  NSString stringWithFormat:@"e %f",progress] ;
+                
+                blockcell.progressLabel.text=string;
+                
+            } repeats:YES];
             
-        } repeats:YES];
+        }else{
+      
+            [sender setTitle:@"Start" forState:UIControlStateNormal];
+            
+            [blockcell.myTimer invalidate];
+            
+        }
+        
+        
     } forControlEvent:UIControlEventTouchUpInside];
-    
-    
-    
-    /* if (cell == nil) {
-     cell = [[TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-     } */
     
     return cell;
 }
 
 - (IBAction)showModel:(id)sender {
     
-    
     NSLog(@"erk %@",self.array);
+    
+    
+    
 }
+
 @end

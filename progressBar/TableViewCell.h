@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface TableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
 
 @property (nonatomic, strong) IBOutlet UILabel *progressLabel;
-@property (nonatomic, strong) UIProgressView *progressView;
+
 @property (nonatomic, strong) NSTimer *myTimer;
-@property (readwrite) float percentage;
 @end

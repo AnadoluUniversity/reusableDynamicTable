@@ -14,12 +14,12 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.percentage =0;
-        // Initialization code
-        self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
         
-        self.progressView.center = self.center;
-        [self addSubview:self.progressView];
+        // Initialization code
+      //  self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+        
+       // self.progressView.center = self.center;
+       // [self addSubview:self.progressView];
        
     }
     return self;
