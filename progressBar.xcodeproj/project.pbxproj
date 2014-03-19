@@ -24,6 +24,7 @@
 		0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60F18CF645400D0E6AC /* TableViewCell.m */; };
 		8B12A56218D0A108009E856F /* UIControl-JTTargetActionBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B12A56118D0A108009E856F /* UIControl-JTTargetActionBlock.m */; };
 		8B12A56518D0A3E4009E856F /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B12A56418D0A3E4009E856F /* NSTimer+Blocks.m */; };
+		FF58067618D9907500B5F2A8 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = FF58067518D9907500B5F2A8 /* Model.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		8B12A56118D0A108009E856F /* UIControl-JTTargetActionBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl-JTTargetActionBlock.m"; sourceTree = "<group>"; };
 		8B12A56318D0A3E4009E856F /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
 		8B12A56418D0A3E4009E856F /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
+		FF58067418D9907500B5F2A8 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		FF58067518D9907500B5F2A8 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				0443B60F18CF645400D0E6AC /* TableViewCell.m */,
 				0443B5EE18CF63F100D0E6AC /* ViewController.h */,
 				0443B5EF18CF63F100D0E6AC /* ViewController.m */,
+				FF58067418D9907500B5F2A8 /* Model.h */,
+				FF58067518D9907500B5F2A8 /* Model.m */,
 				0443B5F118CF63F100D0E6AC /* Images.xcassets */,
 				0443B5E018CF63F100D0E6AC /* Supporting Files */,
 			);
@@ -268,6 +273,7 @@
 				8B12A56218D0A108009E856F /* UIControl-JTTargetActionBlock.m in Sources */,
 				0443B5F018CF63F100D0E6AC /* ViewController.m in Sources */,
 				0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */,
+				FF58067618D9907500B5F2A8 /* Model.m in Sources */,
 				0443B5EA18CF63F100D0E6AC /* AppDelegate.m in Sources */,
 				0443B5E618CF63F100D0E6AC /* main.m in Sources */,
 			);

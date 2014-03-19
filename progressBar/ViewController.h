@@ -14,10 +14,6 @@
 - (IBAction)showModel:(id)sender;
    @property (nonatomic, strong) UIProgressView *progressView;
 @property (strong, nonatomic) NSMutableArray * array ;
-@property (strong, nonatomic) NSMutableArray * indexArray ;
 @property (strong, nonatomic) IBOutlet UITableView * tableView;
-@property (strong, nonatomic) NSArray * indexes ;
-@property (strong, nonatomic) NSString * string ;
-@property  (readwrite) int x ;
-@property (nonatomic, strong) NSIndexPath *privateInt;
+
 @end

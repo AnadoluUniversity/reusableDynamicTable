@@ -1,16 +1,17 @@
-//
-//  ViewController.m
-//  progressBar
-//
-//  Created by mac on 11/03/14.
-//  Copyright (c) 2014 mac. All rights reserved.
-//
+    //
+    //  ViewController.m
+    //  progressBar
+    //
+    //  Created by mac on 11/03/14.
+    //  Copyright (c) 2014 mac. All rights reserved.
+    //
 
 #import "ViewController.h"
 #import "TableViewCell.h"
 #import "NSTimer+Blocks.h"
 #import "UIControl-JTTargetActionBlock.h"
-#import <Foundation/NSObject.h>
+
+#import "Model.h"
 
 @interface ViewController ()
 
@@ -21,31 +22,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.indexArray = [NSMutableArray  array];
     
-    self.indexes=[NSArray array];
     self.array = [NSMutableArray  array];
     for (int i = 0; i<1000; i++) {
         
-        NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:@{@"progress":@0.0,
-                                                                                     @"title":[NSString stringWithFormat:@"satir: %d",i]
-                                                                                     }];
-        [self.array addObject:dict];
+        Model* model= [[Model alloc] init];
+        
+        NSTimer * timer = [NSTimer timerWithTimeInterval:0.1 block:^{
+            model.progress++;
+            
+        } repeats:YES];
+        
+        model.progress = 0;
+        model.isRunning = NO;
+        model.timer =timer;
+        
+        model.title=[NSString stringWithFormat:@"satir: %d",i];
+        model.runLoop = [NSRunLoop currentRunLoop];
+        
+        [self.array addObject:model];
         
         
     }
     [self.tableView reloadData];
-	// Do any additional setup after loading the view, typically from a nib.
     
 }
 
--(void)updateDataStructureWithProgress:(NSNumber*)progress andIndex:(NSUInteger)index{
-    NSMutableDictionary * obj = self.array[index];
-    obj[@"progress"] = progress;
+- (IBAction)showModel:(id)sender {
+    [self.array enumerateObjectsUsingBlock:^(Model * model, NSUInteger idx, BOOL *stop) {
+        if (model.progress>0) {
+            NSLog(@"title: %@ progress: %f ",model.title,model.progress);
+            
+        }
+    }];
     
     
 }
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.array.count;
@@ -58,56 +70,40 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // static NSString *CellIdentifier = @"pass";
-    //  TableViewCell *cell =[[TableViewCell alloc] initWithStyle:<#(UITableViewCellStyle)#> reuseIdentifier:NSString "abc"];
-    
-    
     static NSString *CellIdentifier = @"pass";
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- 
     
-    cell.progressLabel.text =[NSString stringWithFormat:@"qqqq %f",[self.array[indexPath.row][@"progress"] floatValue]] ;
-    __block TableViewCell *blockcell = cell;
+    Model * model = self.array[indexPath.row];
+    cell.progressLabel.text =[NSString stringWithFormat:@"progress in model: %f",model.progress] ;
     
-    
-    [cell.startButton addEventHandler:^(UIButton * sender, UIEvent *event) {
-        
-        sender.selected = ! sender.selected;
-        if (sender.selected) {
-            
-            [sender setTitle:@"Stop" forState:UIControlStateSelected];
-       
-            
-            NSLog(@"%@",self.array[indexPath.row]);
-            blockcell.myTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 block:^{
-                float progress = [self.array[indexPath.row][@"progress"] floatValue] +1;
-                [self updateDataStructureWithProgress:[NSNumber numberWithFloat:progress] andIndex:indexPath.row];
-                NSString * string =  [  NSString stringWithFormat:@"e %f",progress] ;
-                
-                blockcell.progressLabel.text=string;
-                
-            } repeats:YES];
-            
-        }else{
-      
-            [sender setTitle:@"Start" forState:UIControlStateNormal];
-            
-            [blockcell.myTimer invalidate];
-            
-        }
-        
-        
-    } forControlEvent:UIControlEventTouchUpInside];
+    cell.startButton.selected =   model.isRunning;
+    cell.progressBar.progress = model.progress/1000;
     
     return cell;
 }
 
-- (IBAction)showModel:(id)sender {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSLog(@"erk %@",self.array);
+    Model * model = self.array[indexPath.row];
     
+    model.isRunning = ! model.isRunning;
+    
+    if (model.isRunning) {
+        
+        [model startTimer];
+        
+    }else{
+        [model stopTimer:indexPath.row];
+        model.timer = [NSTimer timerWithTimeInterval:0.1 block:^{
+            
+         
+            
+        } repeats:YES];
+        
+        
+    }
     
     
 }
-
 @end
