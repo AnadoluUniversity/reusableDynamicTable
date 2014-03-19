@@ -2,14 +2,13 @@
     //  ViewController.m
     //  progressBar
     //
-    //  Created by mac on 11/03/14.
+    //  Created by Erk Ekin on 11/03/14.
     //  Copyright (c) 2014 mac. All rights reserved.
     //
 
 #import "ViewController.h"
 #import "TableViewCell.h"
 #import "NSTimer+Blocks.h"
-#import "UIControl-JTTargetActionBlock.h"
 
 #import "Model.h"
 
@@ -24,24 +23,24 @@
     [super viewDidLoad];
     
     self.array = [NSMutableArray  array];
+    
     for (int i = 0; i<1000; i++) {
         
         Model* model= [[Model alloc] initWithBlock:^{
             
-            [self showModel:nil];
+            [self updateUI];
             
         }];
         
-              
         [self.array addObject:model];
         
-        
     }
-    [self.tableView reloadData];
+    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     
 }
 
-- (IBAction)showModel:(id)sender {
+- (void)updateUI{
     
     [self.array enumerateObjectsUsingBlock:^(Model * model, NSUInteger modelIndex, BOOL *stop) {
         if (model.progress>0) {
@@ -60,6 +59,21 @@
     }];
     
 }
+
+- (void)downloadLimitCheck:(Model *)model {
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRunning == 1"];
+    int limit = 4;
+    if ([self.array filteredArrayUsingPredicate:predicate].count>limit) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"No more downloads than %d",limit] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert   show];
+        model.isRunning = 0;
+        return;
+    }
+    
+}
+
+#pragma mark TableView
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.array.count;
@@ -80,7 +94,9 @@
     
     cell.progressBar.progress = model.progress/1000;
     return cell;
+    
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -91,6 +107,7 @@
     
     if (model.isRunning) {
         
+        [self downloadLimitCheck:model];
         [model startTimer];
         
     }else{
