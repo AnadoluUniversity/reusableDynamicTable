@@ -26,20 +26,13 @@
     self.array = [NSMutableArray  array];
     for (int i = 0; i<1000; i++) {
         
-        Model* model= [[Model alloc] init];
-        
-        NSTimer * timer = [NSTimer timerWithTimeInterval:0.1 block:^{
-            model.progress++;
+        Model* model= [[Model alloc] initWithBlock:^{
             
-        } repeats:YES];
+            [self showModel:nil];
+            
+        }];
         
-        model.progress = 0;
-        model.isRunning = NO;
-        model.timer =timer;
-        
-        model.title=[NSString stringWithFormat:@"satir: %d",i];
-        model.runLoop = [NSRunLoop currentRunLoop];
-        
+              
         [self.array addObject:model];
         
         
@@ -49,13 +42,22 @@
 }
 
 - (IBAction)showModel:(id)sender {
-    [self.array enumerateObjectsUsingBlock:^(Model * model, NSUInteger idx, BOOL *stop) {
+    
+    [self.array enumerateObjectsUsingBlock:^(Model * model, NSUInteger modelIndex, BOOL *stop) {
         if (model.progress>0) {
-            NSLog(@"title: %@ progress: %f ",model.title,model.progress);
+            
+            [[self.tableView visibleCells] enumerateObjectsUsingBlock:^(TableViewCell* cell, NSUInteger idx, BOOL *stop) {
+                
+                if ([self.tableView indexPathForCell:cell].row == modelIndex) {
+                    
+                    cell.progressLabel.text =[NSString stringWithFormat:@"%.1f",model.progress] ;
+                    cell.progressBar.progress = model.progress/1000;
+                }
+                
+            }];
             
         }
     }];
-    
     
 }
 
@@ -74,11 +76,9 @@
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     Model * model = self.array[indexPath.row];
-    cell.progressLabel.text =[NSString stringWithFormat:@"progress in model: %f",model.progress] ;
+    cell.progressLabel.text =[NSString stringWithFormat:@"%.1f",model.progress] ;
     
-    cell.startButton.selected =   model.isRunning;
     cell.progressBar.progress = model.progress/1000;
-    
     return cell;
 }
 
@@ -94,13 +94,8 @@
         [model startTimer];
         
     }else{
-        [model stopTimer:indexPath.row];
-        model.timer = [NSTimer timerWithTimeInterval:0.1 block:^{
-            
-         
-            
-        } repeats:YES];
         
+        [model stopTimer:indexPath.row];
         
     }
     

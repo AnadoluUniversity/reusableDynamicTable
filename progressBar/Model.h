@@ -10,13 +10,13 @@
 
 @interface Model : NSObject
 
-@property (strong, nonatomic)  NSString* title;
 @property (readwrite) float progress;
 @property (strong, nonatomic)  NSTimer * timer;
 @property (strong, nonatomic)  NSRunLoop * runLoop;
 @property (readwrite)  BOOL isRunning;
 
--(void)startTimer;
--(void)stopTimer:(int)index;
+- (void)startTimer;
+- (void)stopTimer:(int)index;
+- (id)initWithBlock:(void (^)(void))blockName;
 
 @end
