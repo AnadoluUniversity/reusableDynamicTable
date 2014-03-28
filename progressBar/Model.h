@@ -6,17 +6,18 @@
     //  Copyright (c) 2014 mac. All rights reserved.
     //
 
-#import <Foundation/Foundation.h>
-
+#import "AFNetworking.h"
 @interface Model : NSObject
 
 @property (readwrite) float progress;
-@property (strong, nonatomic)  NSTimer * timer;
-@property (strong, nonatomic)  NSRunLoop * runLoop;
-@property (readwrite)  BOOL isRunning;
 
-- (void)startTimer;
-- (void)stopTimer:(int)index;
+@property (strong, nonatomic)  NSRunLoop * runLoop;
+@property (strong, nonatomic)  AFHTTPRequestOperation *operation;
+@property (readwrite)  BOOL isRunning;
+@property (readwrite) NSString *title;
+@property (readwrite) NSString *link;
+
+- (void)startDownload:(NSURLRequest*)request;
 - (id)initWithBlock:(void (^)(void))blockName;
 
 @end
