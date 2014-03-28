@@ -63,12 +63,18 @@
     
 }
 
--(void)updateCellForModel:(Model*)model{
-    
+- (TableViewCell *)bringCellOfModel:(Model *)model {
     NSUInteger  index =    [self.modelArray indexOfObject:model];
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     
     TableViewCell * cell = (TableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    return cell;
+}
+
+-(void)updateCellForModel:(Model*)model{
+    
+    TableViewCell *cell;
+    cell = [self bringCellOfModel:model];
     
     if ( [[self.tableView visibleCells] containsObject:cell]) {
         
@@ -111,6 +117,7 @@
        
         [model.operation cancel];
         model.progress = 0;
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         return;
         
     }

@@ -51,12 +51,6 @@
         
         weakSelf.isRunning = NO;
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
     }];
     
     [self.operation start];
