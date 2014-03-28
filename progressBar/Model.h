@@ -7,6 +7,8 @@
     //
 
 #import "AFNetworking.h"
+#import "ViewController.h"
+
 @interface Model : NSObject
 
 @property (readwrite) float progress;
@@ -17,7 +19,7 @@
 @property (readwrite) NSString *title;
 @property (readwrite) NSString *link;
 
-- (void)startDownload:(NSURLRequest*)request;
+- (void)startDownload:(NSURLRequest*)request andVC:(ViewController*)vc;
 - (id)initWithBlock:(void (^)(void))blockName;
 
 @end

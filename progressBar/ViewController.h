@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Model;
 
 @interface ViewController : UIViewController < UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (strong, nonatomic) NSMutableArray * array ;
 @property (strong, nonatomic) IBOutlet UITableView * tableView;
+
+-(void)updateCellForModel:(Model*)model;
 
 @end

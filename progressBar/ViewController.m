@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     
     self.array = [NSMutableArray  array];
     
@@ -74,7 +74,18 @@
     
 }
 
-
+-(void)updateCellForModel:(Model*)model{
+    
+    NSUInteger  index =    [self.array indexOfObject:model];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    TableViewCell * cell = (TableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if ( [[self.tableView visibleCells] containsObject:cell]) {
+        
+        cell.progressBar.progress = model.progress;
+    }
+}
 #pragma mark TableView
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -98,7 +109,7 @@
     cell.progressLabel.text = model.title;
     cell.progressBar.progress=model.progress;
     
- 
+    
     return cell;
     
 }
@@ -108,15 +119,15 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-
+    
     Model * model = self.array[indexPath.row];
     
     NSURL *url = [NSURL URLWithString:model.link];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-    [model startDownload:request];
     
- 
+    [model startDownload:request andVC:self];
+    
+    
 }
 
 -(void)updateDataStructureWithProgress:(NSNumber *)progress andIndex:(NSUInteger)index{

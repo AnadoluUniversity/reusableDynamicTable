@@ -8,9 +8,11 @@
 
 #import "Model.h"
 
+
 @implementation Model
 
-- (void)startDownload:(NSURLRequest*)request{
+- (void)startDownload:(NSURLRequest*)request andVC:(ViewController*)vc{
+    
     __weak typeof(self) weakSelf = self;
  self.operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
@@ -24,7 +26,7 @@
         
        weakSelf.progress=progress;
         
-        
+        [vc updateCellForModel:weakSelf];
     }];
     
     [ self.operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -48,6 +50,7 @@
 
 
 - (id)initWithBlock:(void (^)(void))blockName
+
 { if (self = [super init]) {
     
         self.progress = 0;
