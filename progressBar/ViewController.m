@@ -46,8 +46,9 @@
         [responseObject enumerateObjectsUsingBlock:^(NSDictionary* dictionary, NSUInteger idx, BOOL *stop) {
             
             Model *mod=self.modelArray[idx];
-            [mod setValue:dictionary[@"title"] forKey:@"title"];
-            [mod setValue:dictionary[@"link"] forKey:@"link"];
+            mod.title =dictionary[@"title"];
+            mod.link =dictionary[@"link"];
+            
             
         }];
         

@@ -26,6 +26,7 @@
 
 - (void)startDownload:(NSURLRequest*)request andVC:(ViewController*)vc{
     self.isRunning = YES;
+    
     __weak typeof(self) weakSelf = self;
     self.operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
@@ -35,45 +36,24 @@
         
         float progress = ((float)totalBytesRead) / totalBytesExpectedToRead;
         
-        
-        
         weakSelf.progress=progress;
         
         [vc updateCellForModel:weakSelf];
         
     }];
     
-    [ self.operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        weakSelf.isRunning = NO;
+    [self.operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         weakSelf.operation=nil;
         weakSelf.isRunning = NO;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         weakSelf.isRunning = NO;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        
     }];
     
-    [ self.operation start];
-    
-}
-
-
-
-- (id)initWithBlock:(void (^)(void))blockName
-
-{ if (self = [super init]) {
-    
-    self.progress = 0;
-    self.isRunning = NO;
-    self.link= @"";
-    self.title= @"";
-    self.runLoop = [NSRunLoop currentRunLoop];
+    [self.operation start];
     
 }
 
