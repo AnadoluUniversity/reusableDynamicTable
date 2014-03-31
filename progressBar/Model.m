@@ -8,8 +8,21 @@
 
 #import "Model.h"
 
-
 @implementation Model
+
+- (id)init
+
+{
+    if (self = [super init]) {
+    
+    self.progress = 0;
+    self.isRunning = NO;
+    self.link= @"";
+    self.title= @"";
+    
+}
+    return self;
+}
 
 - (void)startDownload:(NSURLRequest*)request andVC:(ViewController*)vc{
     self.isRunning = YES;
@@ -27,11 +40,14 @@
         weakSelf.progress=progress;
         
         [vc updateCellForModel:weakSelf];
+        
     }];
     
     [ self.operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         weakSelf.isRunning = NO;
         weakSelf.operation=nil;
+        weakSelf.isRunning = NO;
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         weakSelf.isRunning = NO;
@@ -60,9 +76,6 @@
     self.runLoop = [NSRunLoop currentRunLoop];
     
 }
-    return self;
-}
-
 
 
 @end
