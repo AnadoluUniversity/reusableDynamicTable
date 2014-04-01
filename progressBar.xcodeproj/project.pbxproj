@@ -22,6 +22,7 @@
 		0443B60318CF63F100D0E6AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0443B60118CF63F100D0E6AC /* InfoPlist.strings */; };
 		0443B60518CF63F100D0E6AC /* progressBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60418CF63F100D0E6AC /* progressBarTests.m */; };
 		0443B61018CF645400D0E6AC /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0443B60F18CF645400D0E6AC /* TableViewCell.m */; };
+		04985B8C18EAAC0500883A30 /* tableView.gif in Resources */ = {isa = PBXBuildFile; fileRef = 04985B8B18EAAC0500883A30 /* tableView.gif */; };
 		04A710FE18E55610008620AE /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A710DA18E55610008620AE /* AFHTTPRequestOperation.m */; };
 		04A710FF18E55610008620AE /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A710DC18E55610008620AE /* AFHTTPRequestOperationManager.m */; };
 		04A7110018E55610008620AE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A710DE18E55610008620AE /* AFHTTPSessionManager.m */; };
@@ -74,6 +75,7 @@
 		0443B60418CF63F100D0E6AC /* progressBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = progressBarTests.m; sourceTree = "<group>"; };
 		0443B60E18CF645400D0E6AC /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		0443B60F18CF645400D0E6AC /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		04985B8B18EAAC0500883A30 /* tableView.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = tableView.gif; sourceTree = "<group>"; };
 		04A710D918E55610008620AE /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		04A710DA18E55610008620AE /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		04A710DB18E55610008620AE /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				0443B5FE18CF63F100D0E6AC /* progressBarTests */,
 				0443B5D818CF63F100D0E6AC /* Frameworks */,
 				0443B5D718CF63F100D0E6AC /* Products */,
+				04985B8A18EAAC0500883A30 /* images */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +218,14 @@
 				0443B60118CF63F100D0E6AC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04985B8A18EAAC0500883A30 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				04985B8B18EAAC0500883A30 /* tableView.gif */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		04A710D818E55610008620AE /* AFNetworking */ = {
@@ -343,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04985B8C18EAAC0500883A30 /* tableView.gif in Resources */,
 				0443B5F218CF63F100D0E6AC /* Images.xcassets in Resources */,
 				0443B5E418CF63F100D0E6AC /* InfoPlist.strings in Resources */,
 				0443B5ED18CF63F100D0E6AC /* Main.storyboard in Resources */,
